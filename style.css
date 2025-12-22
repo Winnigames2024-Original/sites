@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center; /* Горизонтальное центрирование */
+  align-items: center;     /* Вертикальное центрирование */
+  min-height: 100vh;       /* Высота контейнера = 100% высоты viewport */
+}
+
+.main-box {
+  background-color: #4CAF50;
+  background-color: #4CAF50;
+        border-radius: 5px; /* Небольшое закругление углов (можно 5px, 8px и т.д.) */
+        padding: 5px; /* Внутренние отступы */
+        margin: 5px; /* Внешние отступы */
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Легкая тень для объема */
+}
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+    background-color: LightBlue;
+}
+
+/* Обычный скругленный div */
+.rounded-box {
+    width: 200px;
+    padding: 20px;
+    background-color: #4CAF50; /* Зеленый фон */
+    color: white;
+    text-align: center;
+    border-radius: 15px; /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Легкая тень для объема */
+}
