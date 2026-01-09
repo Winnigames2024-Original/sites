@@ -7,7 +7,7 @@ if (site_url)
   loadAndInsertSiteContent(full_site_url, 'site-source');
 }
 
-async function openNoCloseEnableCookieAlert() {
+function openNoCloseEnableCookieAlert() {
   alert("Enable cookies!!!");
 }
 
