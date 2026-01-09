@@ -60,3 +60,48 @@ footer a:hover {
     text-decoration: underline;
 }
 
+
+#cookie_note {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 100; /* Гарантирует отображение поверх других элементов */
+    bottom: 15px;
+    left: 50%;
+    max-width: 90%; /* Адаптация под узкие экраны */
+    transform: translateX(-50%); /* Центрирование */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.4); /* Тень для выделения */
+}
+
+#cookie_note p {
+    margin: 0;
+    font-size: 0.7rem;
+    text-align: left;
+    color: #000000;
+}
+
+#cookie_note .btn-sm {
+    display: block;
+    margin: 10px auto 0; /* Отступ сверху */
+}
+
+.cookie_accept {
+    width: 20%; /* Ширина кнопки */
+}
+
+/* Адаптация под разные экраны */
+@media (min-width: 576px) { /* Для планшетов и десктопов */
+    #cookie_note.show {
+        display: flex; /* Выравнивание содержимого по горизонтали */
+        align-items: center; /* Центрирование вертикально */
+        gap: 15px; /* Расстояние между текстом и кнопкой */
+    }
+}
+
+@media (max-width: 575px) { /* Для мобильных */
+    #cookie_note.show {
+        display: none; /* Скрыто по умолчанию */
+    }
+}
