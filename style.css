@@ -33,3 +33,30 @@ body {
     border-radius: 15px; /* Скругление углов */
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Легкая тень для объема */
 }
+
+
+
+
+/* styles.css */
+
+/* Футер, который прижимается к низу страницы */
+footer {
+    background-color: #f2f2f2;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    position: fixed; /* Или absolute, если футер не должен перекрывать контент */
+    bottom: 0;
+    left: 0;
+}
+
+/* Стиль для ссылки */
+footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
