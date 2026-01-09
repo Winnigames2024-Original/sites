@@ -7,6 +7,11 @@ if (site_url)
   loadAndInsertSiteContent(full_site_url, 'site-source');
 }
 
+async function openNoCloseEnableCookieAlert() {
+  alert("Enable cookies!!!");
+}
+
+
 
 async function loadAndInsertSiteContent(url, targetDivId) {
   try {
@@ -21,3 +26,10 @@ async function loadAndInsertSiteContent(url, targetDivId) {
     console.error('Ошибка при загрузке или вставке контента:', error);
     }
 }
+
+if (navigator.cookieEnabled) {
+  
+} else {
+  openNoCloseEnableCookieAlert();
+}
+
