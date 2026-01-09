@@ -27,9 +27,38 @@ async function loadAndInsertSiteContent(url, targetDivId) {
     }
 }
 
-if (navigator.cookieEnabled) {
-  
+
+function checkCookie(name) {
+  // Разбиваем строку document.cookie на отдельные куки
+  // и проверяем, есть ли кука, начинающаяся с "имя="
+  return document.cookie.split(';').some((c) => c.trim().startsWith(name + '='));
+}
+
+// Пример использования:
+if (checkCookie('userConsent')) {
+  console.log("Пользователь дал согласие на Cookie.");
+  // Скрыть баннер
+  document.getElementById('cookieBanner').style.display = 'none';
 } else {
+  console.log("Согласие не получено.");
+  // Показать баннер
+  document.getElementById('cookieBanner').style.display = 'block';
   openNoCloseEnableCookieAlert();
 }
 
+
+function setCookie(name, value, days) {
+  let expires = "";
+  if (days) {
+    let date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Срок в днях
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+// Пример: При нажатии кнопки "Принять"
+document.getElementById('acceptButton').addEventListener('click', function() {
+  setCookie('userConsent', 'accepted', 30); // Кука на 30 дней
+  document.getElementById('cookieBanner').style.display = 'none'; // Скрываем баннер
+});
