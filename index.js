@@ -28,37 +28,39 @@ async function loadAndInsertSiteContent(url, targetDivId) {
 }
 
 
-function checkCookie(name) {
-  // Разбиваем строку document.cookie на отдельные куки
-  // и проверяем, есть ли кука, начинающаяся с "имя="
-  return document.cookie.split(';').some((c) => c.trim().startsWith(name + '='));
-}
 
-// Пример использования:
-if (checkCookie('userConsent')) {
-  console.log("Пользователь дал согласие на Cookie.");
-  // Скрыть баннер
-  document.getElementById('cookieBanner').style.display = 'none';
-} else {
-  console.log("Согласие не получено.");
-  // Показать баннер
-  document.getElementById('cookieBanner').style.display = 'block';
-  openNoCloseEnableCookieAlert();
-}
 
+
+
+//Cookies system
 
 function setCookie(name, value, days) {
-  let expires = "";
-  if (days) {
-    let date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Срок в днях
-    expires = "; expires=" + date.toUTCString();
-  }
-  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    let expires = "";
+    if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Конвертация дней в миллисекунды
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = `%%%LATEX_BLOCK_0%%%{value || ""}%%%LATEX_BLOCK_1%%%&') + "=([^;]*)");
+    const match = document.cookie.match(regex);
+    return match ? decodeURIComponent(match[1]) : undefined;
 }
 
-// Пример: При нажатии кнопки "Принять"
-document.getElementById('acceptButton').addEventListener('click', function() {
-  setCookie('userConsent', 'accepted', 30); // Кука на 30 дней
-  document.getElementById('cookieBanner').style.display = 'none'; // Скрываем баннер
-});
+function checkCookies() {
+    const cookieBanner = document.getElementById('cookie_note');
+    const acceptButton = cookieBanner.querySelector('.cookie_accept');
+
+    // Показываем уведомление, если согласие не дано
+    if (!getCookie('cookies_policy')) {
+        cookieBanner.classList.add('show');
+    }
+
+    // Обработчик клика по кнопке "Согласен"
+    acceptButton.addEventListener('click', () => {
+        setCookie('cookies_policy', 'true', 365); // Кука действует 1 год
+        cookieBanner.classList.remove('show'); // Скрываем уведомление
+    });
+}
+
+// Запускаем проверку при загрузке страницы
+checkCookies();
